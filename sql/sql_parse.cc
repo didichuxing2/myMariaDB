@@ -3019,7 +3019,9 @@ static int mysql_create_routine(THD *thd, LEX *lex)
 #endif
     return false;
   }
-error:
+#ifdef WITH_WSREP
+error: /* Used by WSREP_TO_ISOLATION_BEGIN */
+#endif
   return true;
 }
 
